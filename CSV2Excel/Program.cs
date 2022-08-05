@@ -22,15 +22,15 @@ using (var reader = new StreamReader(filePath))
         {
             DataTable dt = new DataTable();
             dt.Load(dr);
-            if (dt==null || dt.Rows.Count == 0)
+            if (dt == null || dt.Rows.Count == 0)
             {
                 Console.WriteLine("empty csv file, existing program...");
             }
             else
             {
                 string fileName = Path.GetFileNameWithoutExtension(filePath);
-                var fileFolder = Path.GetDirectoryName(fileName);
-                using(XLWorkbook wb = new XLWorkbook())
+                var fileFolder = Path.GetDirectoryName(filePath);
+                using (XLWorkbook wb = new XLWorkbook())
                 {
                     wb.Worksheets.Add(dt, fileName);
                     wb.SaveAs($"{fileFolder}/{fileName}.xlsx");
